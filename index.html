@@ -1,456 +1,292 @@
 <!DOCTYPE html>
-<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
-
-   <!--- Basic Page Needs
-   ================================================== -->
-   <meta charset="utf-8">
-	<title>Arecaland Coco Export</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-   <!-- Mobile Specific Metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<!-- CSS
-    ================================================== -->
-   <link rel="stylesheet" href="css/default.css">
-	<link rel="stylesheet" href="css/layout.css">
-   <link rel="stylesheet" href="css/media-queries.css">
-   <link rel="stylesheet" href="css/magnific-popup.css">
-   <link rel="stylesheet" href="css/animate.css">
-   <link rel="stylesheet" href="css/background-animation.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-   <!-- Script
-   ================================================== -->
-	<script src="js/modernizr.js"></script>
-
-   <!-- Favicons
-	================================================== -->
-
-</head>
-
-<body>
-
-   <div class="se-pre-con">
-   </div>
-   <!-- Header
-   ================================================== -->
-   <header id="home">
-
-      <nav id="nav-wrap">
-
-         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
-
-         <ul id="nav" class="nav">
-            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-            <li><a class="smoothscroll" href="#about">Profile</a></li>
-	         <li><a class="smoothscroll" href="#resume">Priority</a></li>
-            <li><a class="smoothscroll" href="#testimonials">Product</a></li>
-            <li><a class="smoothscroll" href="#contact">Contact</a></li>
-         </ul> <!-- end #nav -->
-
-      </nav> <!-- end #nav-wrap -->
-
-      <div class="row banner">
-         <div class="banner-text">
-            <h1 class="responsive-headline">Arecaland Coco</h1>
-            <h3><span>Arecaland coco is under of <font style="font-weight: bolder;">CV. Karya Bakti Nusantara</font>, to export Coconut & Areca, we promise a quality of our product.
-               </span>
-            </h3>
-            <p class="text-white align-center">(see more our profile under page)</p>
-            <hr />
-            <ul class="social">
-               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-               <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-         </div>
-      </div>
-
-      <p class="scrolldown">
-         <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
-      </p>
-
-   </header> <!-- Header End -->
-
-   <section id="about">
-      <div class="row item founder-screen-full founder-screen-full">
-         <h2 class="align-center">PROFILE</h2><br>
-         <div class="six columns text-justify">
-            <p>
-               Arecaland coco is a project of <font style="font-style: italic;">CV. Karya Bakti Nusantara</font>, which founded by two persons based on the awareness of high potential of natural resources around us, and the desire of willingness to contribute for the welfare of our local farmers. we chose the coconut and areca nuts  products at the moment. Seeing our region’s enormous potential, we chose to concentrate on coconut and areca nut goods and all of their derivatives, and to finally bring these commodities into the next level. We exist to increase the demand for the quality of coconut and areca nut products at a more profitable prices for farmers and presents the entire world. We are strongly believe, with the increased demand and empowerment support from us, the welfare of local farmers will increase and improving, along with the quality of their products. In our perspective it’s definitely not hard to find some repentances circumstances and often occurs in almost of all on these potential areas, where farmers rather find the situation’s difficult to sell their harvesting product, because the market is rather unreachable by them privately. We also care about the issue which often faced by coconut and areca nut farmers, specifically the low selling price. This situation occurs due to many factors, one of which is some domestic buyers who are not transparent. This results the farmers who don’t know the market yet have no choice but to sell their crops to an amoral people as the buyer. This condition can be the cause for the lack of skills and abillities of the farmers in processing and upgrading their products, and we wanna fix it. The declining quality of the products will certainly be very detrimental to the farmers themselves.
-
-            </p>
-         </div>
-         <div class="six columns text-justify align-center">
-            <img class="founder-border" src="images/portfolio/founder/Irpan-saepul-bahri-as-founder-circle.jpg" alt="">
-            <h3>Irpan Saepul Bahri</h3>
-            <p>Founder of arecalandcoco.com</p>
-            <p>"Jadilah orang yang bermartabat, jujur dan selalu menyampaikan kebenaran."</p>
-            <hr>
-            <img class="founder-border" src="images/portfolio/founder/Syariff-hidayatullah-co-founder-circle.jpg" alt="">
-            <h3>Syariff Hidayatullah</h3>
-            <p>Co-Founder of arecalandcoco.com</p>
-            <p>"Buatlah tujuan untuk hidup, kemudian gunakan segenap kekuatan untuk mencapainya, kamu pasti berhasil."</p>
-         </div>
-         <div class="six columns text-justify align-center">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #0D1B2A;
+            color: #E0E1DD;
+            position: relative; /* Untuk memudahkan penempatan tombol fixed */
+            min-height: 100vh; /* Mengisi tinggi minimum halaman */
             
-         </div>
-      </div>
-   </section>
-   <!-- Resume Section
-   ================================================== -->
-      
-   <section id="resume">
+        }
+        input, select, button {
+            margin: 5px 0;
+            background-color: #1B263B;
+            color: #E0E1DD;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .button-container {
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        button#exportBtn,
+        button#copyBtn {
+            float: right;
+            margin-left: 10px;
+            display: none;
+            background-color: #1B263B;
+            color: #E0E1DD;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .terminal-label {
+            float: left;
+            margin-top: 10px;
+            display: none;
+        }
+        pre {
+            display: none;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            padding: 10px;
+            background-color: #1B263B;
+            border: 1px solid #415A77;
+            color: #778DA9;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .button-ExportGenerate {
+            width: 25vw;
+            height: 40px;
+            border: 2px solid #3A86FF;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        @keyframes blinking-border {
+            0%, 100% { border-bottom-color: transparent; }
+            50% { border-bottom-color: #E0E1DD; }
+        }
+        .button-ExportCopy {
+            width: 80px;
+            height: 40px;
+            border: 2px solid #3A86FF;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #backBtn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+<h1 id="title">Voucher Generator</h1>
+<div class="button-container">
+    <label for="numVouchers">Number of Vouchers:</label>
+    <input type="number" id="numVouchers" min="1" required>
+    <br>
+    <label for="profile">Profile:</label>
+    <select id="profile" required>
+        <option value="7d">7 Hari</option>
+        <option value="24h">24 Jam</option>
+        <option value="12h">12 Jam</option>
+        <option value="5h">5 Jam</option>
+        <option value="2h">2 Jam</option>
+    </select>
+    <br>
+    <button onclick="generateVouchers()" class="button-ExportGenerate">GENERATE</button>
+</div>
 
-      <!-- Education
-      ----------------------------------------------- -->
-      <div class="row item resume-text-margin text-font-style">
-         <div class="twelve columns text-center header-col">
-            <h1>
-               <span class="text-white-primary">PRIORITY</span>
-            </h1>
-         </div>
-         <br><br>
-         <div class="row item resume-text-margin text-font-style card-space">
-            <div class="card-space">
-               <div class="six columns text-center">
-                  <div class="card">
-                     <div class="card-padding">
-                        <ul class="social icon-size">
-                           <li>
-                              <i class="fa fa-link" aria-hidden="true"></i>
-                           </li>
-                           <font class="text-white resume-text-size text-font-style-bold">Integrity</font>
-                        </ul>
-                     </div>
-                     <p class="text-white resume-text-size-sub card-margin">Integrity means telling the <font class="text-bold quote-color"> truth</font>, keeping our word and <font class="text-bold quote-color">treating others with fairness and respect.</font> Integrity is one of our most cherished assets. It must not be compromised.</p>
-                  </div>
-               </div>
-               <div class="six columns text-center">
-                  <div class="card">
-                     <div class="card-padding">
-                        <ul class="social icon-size">
-                           <li>
-                              <i class="fa fa-check " aria-hidden="true"></i>
-                           </li>
-                           <font class="text-white resume-text-size text-font-style-bold">Quality</font>
-                        </ul>
-                     </div>
-                     <p class="text-white resume-text-size-sub card-margin">Quality is exhibited in many ways by <font class="text-bold quote-color">selling and supporting products and services that delight customers</font>, establishing a work environment, delivering financial results that meet investor expectations.</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="row item resume-text-margin text-font-style card-space">
-            <div class="">
-               <div class="six columns text-center">
-                  <div class="card">
-                     <div class="card-padding">
-                        <ul class="social icon-size">
-                           <li>
-                              <i class="fa fa-users" aria-hidden="true"></i>
-                           </li>
-                           <font class="text-white resume-text-size text-font-style-bold">Commitment</font>
-                        </ul>
-                        <p class="text-white resume-text-size-sub card-margin">Commitment is important where we will <font class="text-bold quote-color">continue to provide the best to our customers and investors all the time</font>. Our opportunity to serve should be viewed as a <font class="text-bold quote-color">privilege that is not to be taken for granted.</font></p>
-                     </div>
-                  </div>
-               </div>
-               <div class="six columns text-center">
-                  <div class="card">
-                     <div class="card-padding">
-                        <ul class="social icon-size">
-                           <li>
-                              <i class="fa fa fa-magic" aria-hidden="true"></i>
-                           </li>
-                           <font class="text-white resume-text-size text-font-style-bold">Innovation</font>
-                        </ul>
-                        <p class="text-white resume-text-size-sub card-margin">We will continue to innovate to <font class="text-bold quote-color">make products from palmyra that can make a healthier lifestyle.</font></p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section> <!-- Resume Section End-->
+<div class="button-container">
+    <span id="terminalLabel" class="terminal-label">Terminal :</span>
+    <button id="exportBtn" class="button-ExportCopy" onclick="exportToPDF()">EXPORT PDF</button>
+    <button id="copyBtn" class="button-ExportCopy" onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
+</div>
 
-   <section id="testimonials">
-      <div class="area">
-         <div class="circles">
-            <ul>
-               <li></li><li></li><li></li><li></li><li></li><li></li>
-            </ul>
-         </div>
-         <div class="text-container">
-            <h1 class="align-center text-center title-text-size header-col title-margin">Product</h1>
+<pre id="output"></pre>
 
-            <div class="row">
+<button id="backBtn" onclick="showGenerateForm()" class="button-ExportGenerate">KEMBALI</button>
 
-               <div class="twelve columns flex-container">
-   
-                  <div class="flexslider">
-   
-                     <ul class="slides">
-   
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                 <h5 class="text-left">Semi Husked Coconut</h5>
-                                 <p>We proudly present one of Indonesia’s finest natural resources. Freshly hand-picked within 60 days, almost entirely light brown colored, enriched by the sweetness and thickness of coconut flesh; are some of the portrayals of our superior commodity, especially in Sumatra Island.
-                                 </p>
-                                 <cite>Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/coconut-1.png">
-                              </div>
-                              
-                           </blockquote>
-                        </li> <!-- slide ends -->
-   
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Coconut Fibre</h5>
-                                    <p>Coir is a natural fibre formed by the outer part of the coconut shell. The fibrous material can be seen between the hard shell, the inner part, and the outer layers of coconuts. There are two types of coconut coir that possess different usages:<br>
-                                    <ul>
-                                       <li style="list-style-type: disc;"><font class="blockquote-list">Coconut Fibre Produced from ripe coconut, this fibre can be utilised as a material for upholstery, sacks, and horticulture.</font></li>
-                                       <li style="list-style-type: disc;"><font class="blockquote-list">White Coconut Fibre Produced from raw coconut, one is used to make fine brushes, fishing nets, and lastly ropes.</font></li>
-                                    </ul>
-                                    </p>
-                                    <cite>Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/coco-fibre.png">
-                              </div>
-                              
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Desiccated Coconut</h5>
-                                    <p>Desiccated Coconut is obtained by drying the granulated or shredded white meat of the fresh mature coconut kernel. It should be suitably processed for human consumption.<br>
-                                    Desiccated Coconut using the aqueous process by pressing the meat to obtain coconut cream before drying shall be classified as low fat desiccated coconut. <br>
-                                    Desiccated coconut is classified for the purposes of commercialization into three types according to the granulometry of the product as follows:
-                                    <ul style="margin-top: -20px;">
-                                       <li style="list-style-type: disc;"><font class="blockquote-list">Extra-fine desiccated coconut</font></li>
-                                       <li style="list-style-type: disc;"><font class="blockquote-list">Fine desiccated coconut</font></li>
-                                       <li style="list-style-type: disc;"><font class="blockquote-list">Medium desiccated coconut</font></li>
-                                    </ul>
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/desicated-coconut.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Coconut Briquette Charcoal</h5>
-                                    <p>Coconut Charcoal Briquette is a compact block charcoal which made from coconut shell charcoal. Our charcoal briquette is made of granular coconut shell charcoal that is crushed charcoal and moulded using a natural binder. As fuel, it is hotter and last longer than ordinary charcoal. It is suitable for household use both indoor and outdoor. Also, it can be used in food industries, for barbecue, stove fuel, metallurgy, etc.
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/coconut-2.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Organic Coconut Sugar</h5>
-                                    <p>Coconut sugar is the crystallized nectar of the coconut palm  tree blossom that (Cocos nucifera) made by a simple boiling,  cooling, and grinding process. It has been used as sugar in  South-East Asia for many centuries, most particularly in  Indonesia. Our Organic Coconut Sugar is made by a community  of traditional coconut farmers in Indonesia and processed  naturally which there is no chemicals and preservatives added. <br>
-                                    Our organic coconut sugar is the crystallized nectar of the organic coconut palm tree blossom (Cocos nucifera).
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/coconut-sugar.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Coconut Milk and Cream</h5>
-                                    <p>The difference between the two is similar to the difference between dairy milk and cream: They’re made from the same ingredients (coconut, water, and sometimes guar gum for stabilizing), but coconut cream has a higher fat content than coconut milk (less water, more coconut), therefore it’s thicker<br>
-                                    Coconut milk and cream are used both separately and together in curries and spicy soups to ‘cool’ the heat of the dish. They’re also delicious in sweets such as coconut rice pudding or coconut ice cream.
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/coco-milk.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Crude Coconut Oil (CCO)</h5>
-                                    <p>Crude Coconut Oil is the raw coconut oil made of Copra extraction; these mature dried coconut flesh must be further processed to be applicable for usage in the food, soap, cosmetic and oleochemical industries.
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/cco.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Virgin Coconut Oil (VCO)</h5>
-                                    <p>Is an oil that is extracted purely from fresh coconut milk, processed through significantly different stages from the other coconut oil, also smelled of pure fresh coconut water. Although mainly the content of coconut oil has no difference compared to VCO, this product has more advantages, one of which is vitamin E which works best for facial and skin care. VCO is also suitable for consumption; noticing this product is free of trans fat and not hydrogenated.
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/vco.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">RBD Coconut Oil (RBD CNO)</h5>
-                                    <p>Is the refined version of Crude Coconut Oil that is suitable for consumption. RBD CNO is a bright yellow liquid and is semi-solid under room temperature. These kinds of coconut oil are used for food processing and in the oleochemical industries. CNO is relatively more resistant towards high temperatures, therefore lasts longer, and is hard to be blackened during the cooking process.
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/coconut-oil.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Copra</h5>
-                                    <p>Copra is the desiccated flesh of carefully selected fresh coconuts. The selected ripe coconuts split into two, continued by drying them under the sun to detach them from their shells, arranged on special shelves for the final drying process afterward. Until lastly packed and ready to be produced as materials for various advanced products.
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/copra.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                        <li>
-                           <blockquote>
-                              <div class="columns seven">
-                                    <h5 class="text-left">Areca Nuts</h5>
-                                    <p>The areca nut is not a true nut, but rather the seed of a fruit categorized as a berry. It is commercially available in dried, cured, and fresh forms. When the husk of the fresh fruit is green, the nut inside is soft enough to be cut with a typical knife. In the ripe fruit, the husk becomes yellow or orange, and as it dries, the fruit inside hardens to a wood-like consistency. At that stage, the areca nut can only be sliced using a special scissors-like cutter.
-                                    </p>
-                                    <cite style="margin-top: -20px;">Arecaland Product</cite>
-                              </div>
-                              <div class="columns five slide-padding">
-                                 <img alt="" class="image-slider" src="images/portfolio/areca-nut.png">
-                              </div>
-                           </blockquote>
-                        </li> <!-- slide ends -->
-                     </ul>
-   
-                  </div> <!-- div.flexslider ends -->
-   
-               </div> <!-- div.flex-container ends -->
-   
-            </div> <!-- row ends -->
-   
-          </div>  <!-- text-container ends -->
-      </div>
-      
-      
+<script>
+    let vouchers = [];
+    let selectedProfileText = '';
 
-   </section> <!-- Testimonials Section End-->
+    function generateVouchers() {
+        const numVouchersInput = document.getElementById('numVouchers');
+        const numVouchers = parseInt(numVouchersInput.value);
+        
+        if (isNaN(numVouchers) || numVouchers < 1) {
+            alert('Please enter a valid number of vouchers (minimum 1).');
+            numVouchersInput.focus();
+            return;
+        }
 
+        const profileSelect = document.getElementById('profile');
+        const profile = profileSelect.value;
 
+        switch (profile) {
+            case '7d':
+                selectedProfileText = 'Voucher 7D';
+                break;
+            case '24h':
+                selectedProfileText = 'Voucher 24H';
+                break;
+            case '12h':
+                selectedProfileText = 'Voucher 12H';
+                break;
+            case '5h':
+                selectedProfileText = 'Voucher 5H';
+                break;
+            case '2h':
+                selectedProfileText = 'Voucher 2H';
+                break;
+            default:
+                break;
+        }
+        
+        const output = document.getElementById('output');
+        const mikrotikCommands = [];
+        
+        vouchers = [];
+        output.textContent = '';
+        
+        for (let i = 0; i < numVouchers; i++) {
+            const username = profile + generateCode();
+            const password = generateCode();
+            vouchers.push({username, password});
+            mikrotikCommands.push(`/ip hotspot user add name=${username} password=${password} profile="${selectedProfileText}"`);
+        }
+        
+        output.textContent = mikrotikCommands.join('\n');
+        
+        // Tampilkan pre dan tombol setelah generate
+        const preElement = document.getElementById('output');
+        preElement.style.display = 'block';
 
-   <!-- Contact Section
-   ================================================== -->
-   <section id="contact">
+        document.getElementById('exportBtn').style.display = 'block';
+        document.getElementById('copyBtn').style.display = 'block';
+        document.getElementById('terminalLabel').style.display = 'inline';
 
-         <div class="row item">
-            <div class="seven columns">
-               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d45121.489829777274!2d103.58933458021804!3d-1.624915247415675!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2588843bc2c44b%3A0x996ec7fc8ecda283!2sJl.%20Sunan%20Giri%2C%20Kec.%20Kota%20Baru%2C%20Kota%20Jambi%2C%20Jambi%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1644148842768!5m2!1sen!2sus" width="100%" height="25%" style="border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <div class="five columns">
-               <font class="text-white address-text-title">Arecaland Coco</font><br>
-               <div class="row item">
-                  <div class="one columns">
-                     <font class="icon-custom-size middle-text"><font class="fa fa-map-marker"></font>
-                  </div>
-                  <div class="ten columns">
-                     <a href="https://maps.google.com/maps?ll=-1.623072,103.596789&z=15&t=m&hl=en-US&gl=US&mapclient=embed&q=Jl.%20Sunan%20Giri%20Kec.%20Kota%20Baru%20Kota%20Jambi%20Jambi" target="_blank"></font></font><font class="text-justify">Jl. Langgar RT. 47/RW. 00, Perumahan Kedaton House No. C12A Kenali Asam Bawah, Kec. Kota Baru, Kota Jambi, Jambi, 36129</a></font><br>
-                  </div>
-               </div>
-               <div class="row item">
-                  <div class="one columns">
-                     <font class="icon-custom-size middle-text"><font class="fa fa-whatsapp"></font>
-                  </div>
-                  <div class="ten columns">
-                     <a href="https://api.whatsapp.com/send?phone=6282211468646" target="_blank"></font></font><font>+62 822-1146-8646</a></font><br>
-                  </div>
-               </div>
-               <div class="row item">
-                  <div class="one columns">
-                     <font class="icon-custom-size middle-text"><font class="fa fa-phone"></font>
-                  </div>
-                  <div class="ten columns">
-                     <a href="" target="#"></font></font><font>+62 822-1146-8646</a></font>
-                  </div>
-               </div>
-               </div>
-            </div>
-         </div>
+        // Sembunyikan form generate dan judul
+        const formContainer = document.querySelector('.button-container');
+        formContainer.style.display = 'none';
 
-   </section> <!-- Contact Section End-->
+        const title = document.getElementById('title');
+        title.style.display = 'none';
 
+        // Tampilkan tombol "Kembali"
+        const backButton = document.getElementById('backBtn');
+        backButton.style.display = 'inline';
+    }
 
-   <!-- footer
-   ================================================== -->
-   <footer>
-      <div class="row">
-         <div class="twelve columns">
-            <ul class="social-links">
-               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-               <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-         </div>
-         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-      </div>
-   </footer> <!-- Footer End-->
-   <a href="https://wa.me/6282211468646?text=I interest your coco product" class="float animate__animated animate__fadeInRight animate__delay-2s" target="_blank">
-      <i class="fa fa-whatsapp my-float"></i>
-   </a>
-   <!-- Java Script
-   ================================================== -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    function showGenerateForm() {
+        // Tampilkan kembali form generate dan judul
+        const formContainer = document.querySelector('.button-container');
+        formContainer.style.display = 'block';
 
-   <script src="js/jquery.flexslider.js"></script>
-   <script src="js/waypoints.js"></script>
-   <script src="js/jquery.fittext.js"></script>
-   <script src="js/magnific-popup.js"></script>
-   <script src="js/init.js"></script>
-   <script>
-      $(window).load(function() {
-         // Animate loader off screen
-         $(".se-pre-con").fadeOut("slow");;
-      });
-   </script>
+        const title = document.getElementById('title');
+        title.style.display = 'block';
+
+        // Sembunyikan output dan tombol ekspor
+        const output = document.getElementById('output');
+        output.textContent = '';
+        output.style.display = 'none';
+
+        document.getElementById('exportBtn').style.display = 'none';
+        document.getElementById('copyBtn').style.display = 'none';
+        document.getElementById('terminalLabel').style.display = 'none';
+
+        // Sembunyikan tombol "Kembali"
+        const backButton = document.getElementById('backBtn');
+        backButton.style.display = 'none';
+    }
+
+    function generateCode() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < 8; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
+
+    function exportToPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const margin = 10;
+        const cellWidth = (doc.internal.pageSize.getWidth() - margin * 2) / 4;
+        const cellHeight = 35;
+
+        doc.setLineWidth(0.5);
+
+        vouchers.forEach((voucher, index) => {
+            const col = index % 4;
+            const row = Math.floor(index / 4) % 8;
+            const page = Math.floor(index / 32);
+
+            if (index % 32 === 0 && index > 0) {
+                doc.addPage();
+                doc.setLineWidth(0.5);
+            }
+
+            const x = margin + col * cellWidth;
+            const y = margin + row * cellHeight;
+
+            doc.rect(x, y, cellWidth, cellHeight);
+
+            doc.setFontSize(10);
+            const labelWidth = doc.getStringUnitWidth(selectedProfileText) * 10 / doc.internal.scaleFactor;
+            const labelX = x + (cellWidth - labelWidth) / 2;
+            const labelY = y + 6;
+            doc.text(selectedProfileText, labelX, labelY);
+
+            doc.setLineDash([2, 2], 0);
+            doc.line(x, labelY + 3, x + cellWidth, labelY + 3);
+            doc.setLineDash([]);
+
+            doc.setFontSize(10);
+            const textY = labelY + 8;
+            doc.text(`Username: ${voucher.username}`, x + 2, textY);
+            doc.text(`Password: ${voucher.password}`, x + 2,
+            textY + 5);
+
+            doc.setLineDash([2, 2], 0);
+            doc.line(x, textY + 7, x + cellWidth, textY + 7);
+            doc.setLineDash([]);
+
+            doc.setFontSize(9);
+            const infoX = x + 2;
+            let infoY = textY + 12;
+            const infoLines = doc.splitTextToSize(`-Masuk kedalam wifi "Home-.." -Ketik pada broswer "starbit.id"  atau ketik "10.10.10.1"`, cellWidth - 4);
+            infoLines.forEach(line => {
+                doc.text(line, infoX, infoY);
+                infoY += 3;
+            });
+        });
+
+        const fileName = `Voucher (${selectedProfileText}).pdf`;
+        doc.save(fileName);
+    }
+
+    function copyToClipboard() {
+        const output = document.getElementById('output');
+        const textArea = document.createElement('textarea');
+        textArea.textContent = output.textContent;
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+        alert('Copied to clipboard!');
+    }
+</script>
+
+<button id="backBtn" onclick="showGenerateForm()" class="button-ExportGenerate">KEMBALI</button>
 
 </body>
-
 </html>
