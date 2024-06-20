@@ -9,36 +9,46 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #0D1B2A;
-            color: #E0E1DD;
-            position: relative;
+            color: #778DA9;
             font-size: 12pt;
-            max-height: 99%;
-            margin: 0;
-            padding: 0;
+            margin: auto;
         }
         @keyframes blinkBorder {
             0% {
                 border-bottom-color: transparent;
             }
             50% {
-                border-bottom-color: #415A77;
+                border-bottom-color: #E0E1DD;
             }
             100% {
                 border-bottom-color: transparent;
             }
         }
-        .parent{
+        @keyframes blinkBorderAll {
+            0% {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #778DA9;
+            }
+            100% {
+                border-color: transparent;
+            }
+        }
+        .parent {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 99%;
-        }
-        .child{
+            height: 100% !important;
+            flex: 1 0 100%;
             flex-direction: column;
+            position: fixed;
+            width: 100%;
         }
-        h2 {
-            margin:0;
-            padding:0;
+        #title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #778DA9;
         }
         button {
             background-color: #1B263B;
@@ -53,30 +63,32 @@
             border: none;
             color: #E0E1DD;
             padding-left: 10px;
-            width: 47vw;
+            margin-right: 10px;
+            width: 95%;
             height: 40px;
             outline: none;
+            color: #778DA9;
         }
         .select-custom{
             background-color: #1B263B;
             border: none;
             border-radius: 4px;
-            width: 50vw;
+            
             height: 40px;
         }
-        input, input:focus {
+        input {
             margin: 5px 0;
             background-color: #1B263B;
             border: 0;
-            padding: 8px;
             border-radius: 4px;
             outline: none;
-            color: #E0E1DD;
-            width: 50vw;
+            color: #778DA9;
+            
             height: 40px;
             padding-left:13px;
         }
         input:focus{
+            color: #778DA9;
             border-bottom: 1px solid transparent;
             animation: blinkBorder 1s infinite;
         }
@@ -129,12 +141,13 @@
             width: 100%;
         }
         .button-ExportGenerate {
-            width: 50vw;
+            width: 100%;
             height: 40px;
-            border: 2px solid #3A86FF;
+            border: 1px solid #E0E1DD;
             border-radius: 5px;
             font-weight: bold;
-            cursor: pointer;
+            color: #778DA9;
+            animation: blinkBorderAll 30s infinite;
         }
         .button-ExportCopy {
             width: 80px;
@@ -207,12 +220,9 @@
 </head>
 <body>
 <div class="parent" id="title">
-    <div class="child">
-    <h2 id="title" class="center-text">GET</h2>
-    <h2 id="title" class="center-text">VOUCHER</h2>
-
+    <div id="title" class="center-text">GET VOUCHER</div>
     <div class="button-container">
-        <input type="number" id="numVouchers" min="1" required placeholder="How many voucher?">
+        <input type="number" id="numVouchers" min="1" required placeholder="How many voucher ?">
         <br>
         <div class="select-custom">
             <select id="profile" required>
@@ -225,7 +235,6 @@
         </div>
         <br>
         <button onclick="generateVouchers()" class="button-ExportGenerate">GENERATE</button>
-    </div>
     </div>
 </div>
 <div class="button-container">
