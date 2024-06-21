@@ -40,7 +40,6 @@
             align-items: center;
             justify-content: center;
             height: 100% !important;
-            flex: 1 0 100%;
             flex-direction: column;
             position: fixed;
             width: 100%;
@@ -54,37 +53,51 @@
             background-color: #1B263B;
             color: #E0E1DD;
             border-radius: 4px;
-            width: 50vw;
             height: 40px;
         }
         select {
             background-color: transparent;
             border: none;
             color: #E0E1DD;
-            padding-left: 10px;
+            padding-left: 12px;
             margin-right: 10px;
-            width: 95%;
             height: 40px;
             outline: none;
             color: #778DA9;
+            width: 98%;
+            font-size: 12pt;
         }
         .select-custom{
             background-color: #1B263B;
             border: none;
             border-radius: 4px;
-            
             height: 40px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        option{
+            color: #778DA9;
+            background-color: #1B263B;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+        }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
         input {
-            margin: 5px 0;
             background-color: #1B263B;
-            border: 0;
+            border: none;
             border-radius: 4px;
             outline: none;
             color: #778DA9;
-            
+            cursor: pointer;
             height: 40px;
-            padding-left:13px;
+            width: 100%;
+            padding-left: 15px;
+            margin-bottom: 15px;
+            font-size: 12pt;
         }
         input:focus{
             color: #778DA9;
@@ -96,6 +109,12 @@
             font-size: 12pt;
         }
         .button-container {
+            display: flex;
+            flex-flow: row wrap;
+            overflow: hidden;
+            width: 50% !important;
+        }
+        .button-container-second {
             overflow: hidden;
             margin-right: 20px;
             margin-top: 20px;
@@ -147,6 +166,15 @@
             font-weight: bold;
             color: #778DA9;
             animation: blinkBorderAll 30s infinite;
+        }
+        .button-ExportGenerate:active {
+            outline: 0;
+            border: 1px solid #E0E1DD;
+            box-shadow: 0;
+        }
+        .button-ExportGenerate:focus {
+            outline: 0;
+            border: 1px solid #E0E1DD;
         }
         .button-ExportCopy {
             width: 80px;
@@ -210,17 +238,17 @@
         .button-x:focus {
             outline: none;
         }
-        .center-text{
+        .center-text-title{
             text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 <div class="parent" id="title">
-    <div id="title" class="center-text">GET VOUCHER</div>
+    <div id="title" class="center-text-title">GET VOUCHER</div>
     <div class="button-container">
         <input type="number" id="numVouchers" min="1" required placeholder="How many voucher ?">
-        <br>
         <div class="select-custom">
             <select id="profile" required>
                 <option value="7d">7 Hari</option>
@@ -234,7 +262,7 @@
         <button onclick="generateVouchers()" class="button-ExportGenerate">GENERATE</button>
     </div>
 </div>
-<div class="button-container">
+<div class="button-container-second">
     <span id="terminalLabel" class="terminal-label">Terminal :</span>
     <button id="exportBtn" class="button-ExportCopy" onclick="exportToPDF()">EXPORT</button>
     <button id="copyBtn" class="button-ExportCopy" onclick="copyToClipboard()">COPY</button>
