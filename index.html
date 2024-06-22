@@ -3,187 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voucher Generator</title>
+    <link rel="icon" href="https://img.icons8.com/?size=48&id=81379&format=png" type="image/x-icon" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <title>Voucher Generate</title>
     <style>
+        *{
+            font-family: monospace !important;
+        }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #0D1B2A;
-            color: #778DA9;
-            font-size: 12pt;
-            margin: auto;
+            margin: 0;
+            background-color: #231942;
+            color : #ffd6ff;
         }
-        @keyframes blinkBorder {
+        @keyframes changeTextColor {
             0% {
-                border-bottom-color: transparent;
-            }
-            50% {
-                border-bottom-color: #E0E1DD;
+                color: #ffd6ff;
             }
             100% {
-                border-bottom-color: transparent;
+                color: #231942;
             }
         }
-        @keyframes blinkBorderAll {
+        @keyframes shadowTextColor {
             0% {
-                border-color: transparent;
-            }
-            50% {
-                border-color: #778DA9;
+                text-shadow: 0 0 20px #ffd6ff;
             }
             100% {
-                border-color: transparent;
+                text-shadow: 0 0 0 transparent;
+            }
+            0% {
+                text-shadow: 0 0 20px #ffd6ff;
             }
         }
-        .parent {
+        .container {
             display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
-            height: 100% !important;
-            flex-direction: column;
-            position: fixed;
-            width: 100%;
+            height: 100vh;
         }
-        #title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #778DA9;
-        }
-        button {
-            background-color: #1B263B;
-            color: #E0E1DD;
-            border-radius: 4px;
+        .container input, select {
+            border-right: 2px #231942 solid;
             height: 40px;
         }
-        select {
-            background-color: transparent;
+        .input-property, input {
+            background-color: #5e548e;
+            outline: 0;
             border: none;
-            color: #E0E1DD;
-            padding-left: 12px;
-            margin-right: 10px;
-            height: 40px;
-            outline: none;
-            color: #778DA9;
-            width: 98%;
-            font-size: 12pt;
+            color: #ffd6ff;
+            padding: 0 0 0 10px;
+            float: left;
         }
-        .select-custom{
-            background-color: #1B263B;
-            border: none;
-            border-radius: 4px;
-            height: 40px;
-            margin-bottom: 15px;
-            width: 100%;
+        .input-property {
+            border-radius: 5px 0 0 0;
         }
-        option{
-            color: #778DA9;
-            background-color: #1B263B;
-            outline: none;
-            border: none;
-            border-radius: 5px;
+        .container-child {
+            display: flex;
+            float: right;
+            border-radius: 0 5px 0 0;
+            background-color: #5e548e;
+            height: 40px;
+        }
+        .container-child:focus {
+            background-color: #5e548e;
+            height: 40px;
+        }
+        .container-child select {
+            height: 40px;
+        }
+        .input-property, input::placeholder {
+            color: #ffd6ff;
         }
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
-        input {
-            background-color: #1B263B;
+        input:focus::placeholder{
+            color: #231942;
+            animation: 0.25s changeTextColor linear forwards;
+        }
+        .border {
+        }
+        select {
+            padding: 0;
+            background-color: transparent;
             border: none;
-            border-radius: 4px;
+            color: #ffd6ff;
+            margin-right: 5px;
+        }
+        select:focus {
+            padding: 0;
+            background-color: transparent;
             outline: none;
-            color: #778DA9;
-            cursor: pointer;
-            height: 40px;
-            width: 100%;
-            padding-left: 15px;
-            margin-bottom: 15px;
-            font-size: 12pt;
+            border: none;
+            color: #ffd6ff;
+            animation: 0.25s changeTextColor linear forwards;
         }
-        input:focus{
-            color: #778DA9;
-            border-bottom: 1px solid transparent;
-            animation: blinkBorder 1s infinite;
+        option {
+            background-color: #e0b1cb;
+            color: #231942;
+            border: 0;
+            outline: 0;
+            text-align: right;
         }
-        input::placeholder{
-            color: #415A77;
-            font-size: 12pt;
+        .center-text-title{
+            text-align: center;
+            font-size: 18px;
+            margin: 0 0 10px 10px;
+            letter-spacing: 10px;
+            padding: 0;
         }
-        .button-container {
-            display: flex;
-            flex-flow: row wrap;
-            overflow: hidden;
-            width: 50% !important;
-        }
-        .button-container-second {
-            overflow: hidden;
-            margin-right: 20px;
-            margin-top: 20px;
-            margin-left: 20px;
-        }
+        /* Core */
         button#exportBtn, button#copyBtn {
-            float: right;
             margin-left: 10px;
             display: none;
-            background-color: #1B263B;
-            color: #E0E1DD;
             border: none;
             padding: 8px;
-            border-radius: 4px;
+            border-radius: 5px;
+            width: 60px;
             cursor: pointer;
         }
         .terminal-label {
-            float: left;
             margin-top: 10px;
             display: none;
+            flex-grow: 1;
         }
         pre {
             display: none;
             white-space: pre-wrap;
             word-wrap: break-word;
             padding: 2vw;
-            background-color: #1B263B;
-            border: 1px solid #415A77;
-            color: #778DA9;
+            background-color: #5e548e;
+            border: 1px solid #9f86c0;
+            color: #231942;
             border-radius: 5px;
             overflow-x: auto;
             margin-right: 20px;
             margin-bottom: 20px;
             margin-left: 20px;
-            font-size: 10pt;
+            font-size: 12pt;
             text-align: justify;
         }
-        .output {
-            display: block;
-            position: absolute;
-            margin-bottom:20px;
-            width: 100%;
-        }
-        .button-ExportGenerate {
-            width: 100%;
-            height: 40px;
-            border: 1px solid #E0E1DD;
-            border-radius: 5px;
-            font-weight: bold;
-            color: #778DA9;
-            animation: blinkBorderAll 30s infinite;
-        }
-        .button-ExportGenerate:active {
-            outline: 0;
-            border: 1px solid #E0E1DD;
-            box-shadow: 0;
-        }
-        .button-ExportGenerate:focus {
-            outline: 0;
-            border: 1px solid #E0E1DD;
-        }
-        .button-ExportCopy {
-            width: 80px;
-            height: 40px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
         #backBtn {
-            padding-top: 8px;
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -195,7 +155,6 @@
             background-color: #E0E1DD;
             border: none;
             cursor: pointer;
-            border: 1px solid #415A77;
             -webkit-tap-highlight-color: transparent;
         }
         .button-close {
@@ -207,6 +166,8 @@
         }
 
         .button-x {
+            margin-top: 8px;
+            margin-left: 1px;
             position: relative;
             width: 30px;
             height: 30px;
@@ -238,232 +199,350 @@
         .button-x:focus {
             outline: none;
         }
-        .center-text-title{
-            text-align: center;
-            margin-bottom: 20px;
+        .output {
+            display: block;
+            position: absolute;
+            margin-bottom:20px;
+            width: 100%;
+        }
+        .second-layout{
+            overflow: hidden;
+            margin-right: 20px;
+            margin-top: 20px;
+            margin-left: 20px;
+            display: none;
+        }
+        .button-Export{
+            background-color: #5e548e;
+            border: none;
+            color: #ffd6ff;
+        }
+        .button-Export:hover{
+            background-color: #47406b;
+            border: none;
+        }
+        .button-Copy{
+            background-color: #5e548e;
+            border: none;
+            color: #ffd6ff;
+            animation: 1s infinite linear shadowTextColor;
+        }
+        .button-Copy:hover{
+            background-color: #47406b;
+            border: none;
+        }
+        .button-ExportGenerate {
+            background-color: #5e548e;
+            border: none;
+            color: #ffd6ff;
+            height: 40px;
+            padding: 0 15px;
+            border-radius: 0 0 5px 5px;
+            cursor: pointer;
+            margin-top: 2px;
+            width: 100%;
+            height: 35px;
+            animation: 1s infinite linear shadowTextColor;
+        }
+        .button-ExportGenerate:hover{
+            background-color: #47406b;
+            border: none;
+        }
+        /* End Core*/
+        @media only screen and (max-width: 800px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+            .container input, select {
+                border-right: 0;
+                height: 35px;
+                margin-bottom: 5px;
+                border-radius: 5px;
+            }
+            .input-property {
+                box-sizing: border-box;
+                width: 100%;
+            }
+            .container-child {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                margin: 0;
+                width: 100%;
+                border-radius: 5px;
+                height: 35px;
+            }
+            .container-child select {
+                margin: 10px 0;
+                width: 100%;
+                align-content: start;
+            }
+            .container-child:focus {
+                border-radius: 0 0px 0px 0px;
+                background-color: #5e548e;
+                height: 40px;
+            }
+            select {
+                text-align: left;
+                padding-left: 5px;
+            }
+            select:focus {
+                padding-left: 5px;
+            }
+            option {
+                border: 0;
+                outline: 0;
+                text-align: left;
+            }
+            .button-ExportGenerate {
+                margin-top: 5px;
+                border-radius: 5px;
+                width: 100%;
+                height: 35px;
+            }
+            pre {
+                display: none;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                padding: 2vw;
+                background-color: #5e548e;
+                border: 1px solid #9f86c0;
+                color: #231942;
+                border-radius: 5px;
+                overflow-x: auto;
+                margin-right: 20px;
+                margin-bottom: 20px;
+                margin-left: 20px;
+                font-size: 9pt;
+                text-align: justify;
+            }
         }
     </style>
 </head>
 <body>
-<div class="parent" id="title">
-    <div id="title" class="center-text-title">GET VOUCHER</div>
-    <div class="button-container">
-        <input type="number" id="numVouchers" min="1" required placeholder="How many voucher ?">
-        <div class="select-custom">
-            <select id="profile" required>
-                <option value="7d">7 Hari</option>
-                <option value="24h">24 Jam</option>
-                <option value="12h">12 Jam</option>
-                <option value="5h">5 Jam</option>
-                <option value="2h">2 Jam</option>
-            </select>
-        </div>
-        <br>
-        <button onclick="generateVouchers()" class="button-ExportGenerate">GENERATE</button>
-    </div>
-</div>
-<div class="button-container-second">
-    <span id="terminalLabel" class="terminal-label">Terminal :</span>
-    <button id="exportBtn" class="button-ExportCopy" onclick="exportToPDF()">EXPORT</button>
-    <button id="copyBtn" class="button-ExportCopy" onclick="copyToClipboard()">COPY</button>
-</div>
-<div class="output">
-    <pre id="output"></pre>
-</div>
-
-<button id="backBtn" onclick="showGenerateForm()" class="button-ExportGenerate">
-    <div class="button-close">
-        <div class="button-x" tabindex="0">
-            <div class="line line1"></div>
-            <div class="line line2"></div>
+    <div class="container">
+        <div class="border">
+            <div id="title" class="center-text-title">GETVOUCHER</div>
+            <div class="input-container">
+                <input id="numVouchers" type="number" min="1" class="input-property" required placeholder="How many voucher ?">
+                <div class="container-child">
+                    <select id="profile" required>
+                        <option value="7d">7 Hari</option>
+                        <option value="24h">24 Jam</option>
+                        <option value="12h">12 Jam</option>
+                        <option value="5h">5 Jam</option>
+                        <option value="2h">2 Jam</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="generateVouchers()" class="button-ExportGenerate">GENERATE</button>
         </div>
     </div>
-</button>
-
-<script>
-    let vouchers = [];
-    let selectedProfileText = '';
-
-    function generateVouchers() {
-        const numVouchersInput = document.getElementById('numVouchers');
-        const numVouchers = parseInt(numVouchersInput.value);
-        
-        if (isNaN(numVouchers) || numVouchers < 1) {
-            alert('Only numbet can allow.');
-            numVouchersInput.focus();
-            return;
-        }
-
-        const profileSelect = document.getElementById('profile');
-        const profile = profileSelect.value;
-
-        switch (profile) {
-            case '7d':
-                selectedProfileText = 'Voucher 7D';
-                break;
-            case '24h':
-                selectedProfileText = 'Voucher 24H';
-                break;
-            case '12h':
-                selectedProfileText = 'Voucher 12H';
-                break;
-            case '5h':
-                selectedProfileText = 'Voucher 5H';
-                break;
-            case '2h':
-                selectedProfileText = 'Voucher 2H';
-                break;
-            default:
-                break;
-        }
-        
-        const output = document.getElementById('output');
-        const mikrotikCommands = [];
-        
-        vouchers = [];
-        output.textContent = '';
-        
-        for (let i = 0; i < numVouchers; i++) {
-            const username = profile + generateCode();
-            const password = generateCode();
-            vouchers.push({username, password});
-            mikrotikCommands.push(`/ip hotspot user add name=${username} password=${password} profile="${selectedProfileText}"`);
-        }
-        
-        output.textContent = mikrotikCommands.join('\n');
-        
-        // Tampilkan pre dan tombol setelah generate
-        const preElement = document.getElementById('output');
-        preElement.style.display = 'block';
-
-        document.getElementById('exportBtn').style.display = 'block';
-        document.getElementById('copyBtn').style.display = 'block';
-        document.getElementById('terminalLabel').style.display = 'inline';
-
-        // Sembunyikan form generate dan judul
-        const formContainer = document.querySelector('.button-container');
-        formContainer.style.display = 'none';
-
-        const title = document.getElementById('title');
-        title.style.display = 'none';
-        const parent = document.getElementById('parent');
-        title.style.display = 'none';
-
-        // Tampilkan tombol "Kembali"
-        const backButton = document.getElementById('backBtn');
-        backButton.style.display = 'inline';
-    }
-
-    function showGenerateForm() {
-        // Tampilkan kembali form generate dan judul
-        const formContainer = document.querySelector('.button-container');
-        formContainer.style.display = 'block';
-
-        const title = document.getElementById('title');
-        title.style.display = 'block';
-        const parent = document.getElementById('parent');
-        title.style.display = 'flex';
-
-        // Sembunyikan output dan tombol ekspor
-        const output = document.getElementById('output');
-        output.textContent = '';
-        output.style.display = 'none';
-
-        document.getElementById('exportBtn').style.display = 'none';
-        document.getElementById('copyBtn').style.display = 'none';
-        document.getElementById('terminalLabel').style.display = 'none';
-
-        // Sembunyikan tombol "Kembali"
-        const backButton = document.getElementById('backBtn');
-        backButton.style.display = 'none';
-    }
-
-    function generateCode() {
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result = '';
-        for (let i = 0; i < 8; i++) {
-            result += chars.charAt(Math.random() * chars.length);
-        }
-        return result;
-    }
-
-    function exportToPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const margin = 10;
-        const cellWidth = (doc.internal.pageSize.getWidth() - margin * 2) / 4;
-        const cellHeight = 35;
-
-        doc.setLineWidth(0.5);
-
-        vouchers.forEach((voucher, index) => {
-            const col = index % 4;
-            const row = Math.floor(index / 4) % 8;
-            const page = Math.floor(index / 32);
-
-            if (index % 32 === 0 && index > 0) {
-                doc.addPage();
-                doc.setLineWidth(0.5);
+    <div class="second-layout" id="second-layout">
+        <span id="terminalLabel" class="terminal-label">Terminal :</span>
+        <button id="copyBtn" class="button-Copy" onclick="copyToClipboard()">COPY</button>
+        <button id="exportBtn" class="button-Export" onclick="exportToPDF()">EXPORT</button>
+    </div>
+    <div class="output">
+        <pre id="output"></pre>
+    </div>
+    <button id="backBtn" onclick="showGenerateForm()">
+        <div class="button-close">
+            <div class="button-x" tabindex="0">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </div>
+    </button>
+    <script>
+        let vouchers = [];
+        let selectedProfileText = '';
+        function generateVouchers() {
+            // Mendapatkan nilai jumlah voucher dari input
+            const numVouchersInput = document.getElementById('numVouchers');
+            const numVouchers = parseInt(numVouchersInput.value);
+                
+            // Validasi jumlah voucher
+            if (isNaN(numVouchers) || numVouchers < 1) {
+                alert('Only numbet can allow.');
+                numVouchersInput.focus();
+                return;
             }
+            // Mendapatkan profil voucher yang dipilih dari dropdown
+            const profileSelect = document.getElementById('profile');
+            const profile = profileSelect.value;
 
-            const x = margin + col * cellWidth;
-            const y = margin + row * cellHeight;
+            // Menyimpan teks profil voucher yang dipilih
+            switch (profile) {
+                case '7d':
+                    selectedProfileText = 'Voucher 7D';
+                    break;
+                case '24h':
+                    selectedProfileText = 'Voucher 24H';
+                    break;
+                case '12h':
+                    selectedProfileText = 'Voucher 12H';
+                    break;
+                case '5h':
+                    selectedProfileText = 'Voucher 5H';
+                    break;
+                case '2h':
+                    selectedProfileText = 'Voucher 2H';
+                    break;
+                default:
+                    break;
+            }
+            const output = document.getElementById('output');
+            const mikrotikCommands = [];
+            vouchers = [];
+            output.textContent = '';
+                // Menghasilkan voucher sebanyak numVouchers
+                for (let i = 0; i < numVouchers; i++) {
+                // Generate username dengan menambahkan profil dan kode acak
+                const username = profile + generateCode();
+                // Generate password dengan kode acak
+                const password = generateCode();
+                // Menambahkan pasangan username dan password ke dalam array vouchers
+                vouchers.push({username, password});
+                // Menambahkan perintah MikroTik untuk menambahkan pengguna hotspot
+                mikrotikCommands.push(`/ip hotspot user add name=${username} password=${password} profile="${selectedProfileText}"`);
+            }
+            
+            // Menampilkan perintah MikroTik dalam elemen output
+            output.textContent = mikrotikCommands.join('\n');
 
-            doc.rect(x, y, cellWidth, cellHeight);
+            // Menampilkan elemen pre (output) dan tombol setelah menghasilkan voucher
+            const preElement = document.getElementById('output');
+            preElement.style.display = 'block';
+            const secondLayout = document.getElementById('second-layout');
+            secondLayout.style.display = 'flex';
 
-            doc.setFontSize(10);
-            const labelWidth = doc.getStringUnitWidth(selectedProfileText) * 10 / doc.internal.scaleFactor;
-            const labelX = x + (cellWidth - labelWidth) / 2;
-            const labelY = y + 6;
-            doc.text(selectedProfileText, labelX, labelY);
+            document.getElementById('exportBtn').style.display = 'inline-block';
+            document.getElementById('copyBtn').style.display = 'inline-block';
+            document.getElementById('terminalLabel').style.display = 'inline';
+            
+            // Menyembunyikan formulir generate dan judul
+            const formContainer = document.querySelector('.container');
+            formContainer.style.display = 'none';
+            // const title = document.getElementById('title');
+            // title.style.display = 'none';
 
-            doc.setLineDash([2, 2], 0);
-            doc.line(x, labelY + 3, x + cellWidth, labelY + 3);
-            doc.setLineDash([]);
+            // Menampilkan tombol "Kembali"
+            const backButton = document.getElementById('backBtn');
+            backButton.style.display = 'inline';
+        }
+        function showGenerateForm() {
+            // Menampilkan kembali formulir generate dan judul
+            const formContainer = document.querySelector('.container');
+            formContainer.style.display = 'flex';
+            const secondLayout = document.getElementById('second-layout');
+            secondLayout.style.display = 'none';
 
-            doc.setFontSize(10);
-            const textY = labelY + 8;
-            doc.text(`Username: ${voucher.username}`, x + 2, textY);
-            doc.text(`Password: ${voucher.password}`, x + 2, textY + 5);
+            // const title = document.getElementById('title');
+            // title.style.display = 'block';
 
-            doc.setLineDash([2, 2], 0);
-            doc.line(x, textY + 7, x + cellWidth, textY + 7);
-            doc.setLineDash([]);
+            // Menyembunyikan output dan tombol ekspor
+            const output = document.getElementById('output');
+            output.textContent = '';
+            output.style.display = 'none';
 
-            doc.setFontSize(9);
-            const infoX = x + 2;
-            let infoY = textY + 12;
-            const infoLines = doc.splitTextToSize(`-Masuk kedalam wifi "Home-.." -Ketik pada broswer "starbit.id"  atau ketik "10.10.10.1"`, cellWidth - 4);
-            infoLines.forEach(line => {
-                doc.text(line, infoX, infoY);
-                infoY += 3;
+            document.getElementById('exportBtn').style.display = 'none';
+            document.getElementById('copyBtn').style.display = 'none';
+            document.getElementById('terminalLabel').style.display = 'none';
+
+            // Menyembunyikan tombol "Kembali"
+            const backButton = document.getElementById('backBtn');
+            backButton.style.display = 'none';
+        }
+        function generateCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < 8; i++) {
+                result += chars.charAt(Math.random() * chars.length);
+            }
+            return result;
+        }
+
+        //Export PDF
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const margin = 10;
+            const cellWidth = (doc.internal.pageSize.getWidth() - margin * 2) / 4;
+            const cellHeight = 35;
+
+            doc.setLineWidth(0.5);
+
+            vouchers.forEach((voucher, index) => {
+                const col = index % 4;
+                const row = Math.floor(index / 4) % 8;
+                const page = Math.floor(index / 32);
+
+                if (index % 32 === 0 && index > 0) {
+                    doc.addPage();
+                    doc.setLineWidth(0.5);
+                }
+
+                const x = margin + col * cellWidth;
+                const y = margin + row * cellHeight;
+
+                doc.rect(x, y, cellWidth, cellHeight);
+
+                doc.setFontSize(10);
+                const labelWidth = doc.getStringUnitWidth(selectedProfileText) * 10 / doc.internal.scaleFactor;
+                const labelX = x + (cellWidth - labelWidth) / 2;
+                const labelY = y + 6;
+                doc.text(selectedProfileText, labelX, labelY);
+
+                doc.setLineDash([2, 2], 0);
+                doc.line(x, labelY + 3, x + cellWidth, labelY + 3);
+                doc.setLineDash([]);
+
+                doc.setFontSize(10);
+                const textY = labelY + 8;
+                doc.text(`Username: ${voucher.username}`, x + 2, textY);
+                doc.text(`Password: ${voucher.password}`, x + 2, textY + 5);
+
+                doc.setLineDash([2, 2], 0);
+                doc.line(x, textY + 7, x + cellWidth, textY + 7);
+                doc.setLineDash([]);
+
+                doc.setFontSize(9);
+                const infoX = x + 2;
+                let infoY = textY + 12;
+                const infoLines = doc.splitTextToSize(`-Masuk kedalam wifi "Home-.." -Ketik pada broswer "starbit.id"  atau ketik "10.10.10.1"`, cellWidth - 4);
+                infoLines.forEach(line => {
+                    doc.text(line, infoX, infoY);
+                    infoY += 3;
+                });
             });
-        });
 
-        const fileName = `Voucher (${selectedProfileText}).pdf`;
-        doc.save(fileName);
-    }
-
-    function copyToClipboard() {
-        const output = document.getElementById('output');
-        const textArea = document.createElement('textarea');
-        textArea.textContent = output.textContent;
-        document.body.append(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        textArea.remove();
-        alert('Copied to clipboard!');
-    }
-</script>
-
-<button id="backBtn" onclick="showGenerateForm()">
-    <div class="button-close">
-        <div class="button-x" tabindex="0">
-            <div class="line line1"></div>
-            <div class="line line2"></div>
+            const fileName = `Voucher (${selectedProfileText}).pdf`;
+            doc.save(fileName);
+        }
+        // Copy Button
+        function copyToClipboard() {
+            const output = document.getElementById('output');
+            const textArea = document.createElement('textarea');
+            textArea.textContent = output.textContent;
+            document.body.append(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            textArea.remove();
+            alert('Copied to clipboard!');
+        }
+    </script>
+    <button id="backBtn" onclick="showGenerateForm()">
+        <div class="button-close">
+            <div class="button-x" tabindex="0">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
         </div>
-    </div>
-</button>
-
+    </button>
 </body>
 </html>
